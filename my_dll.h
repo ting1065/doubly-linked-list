@@ -178,8 +178,25 @@ player_t* team_pop_front(team_t* t){
 // Assume roster numbers are always greater than zero
 player_t* team_pop_back(team_t* t){
 	// TODO: Implement me!!
+	if (t == NULL) {
+        return NULL;
+    }
 	
-	return NULL; // Note: This line is a 'filler' so the code compiles.
+    if (t->activePlayers == 0) {
+        return NULL;
+    }
+
+    player_t* temp;
+    temp = t->tail;
+    t->tail = t->tail->previous;
+    
+    if (t->activePlayers == 1) {
+        t->head = NULL;
+    }
+
+    t->activePlayers--;
+    
+	return temp; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Inserts a new player before the player at the specified position.
