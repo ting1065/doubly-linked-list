@@ -43,7 +43,15 @@ typedef struct Team {
 // Returns NULL if we could not allocate memory.
 team_t* create_team(){
 	// Modify the body of this function as needed.
-	team_t* myTeam= NULL;
+	team_t* myTeam= (team_t*)malloc(sizeof(team_t));
+    if (myTeam == NULL) {
+        return NULL;
+    }
+
+    myTeam->activePlayers = 0;
+    myTeam->head = NULL;
+    myTeam->tail = NULL;
+
 	return myTeam; // Note: This line is a 'filler' so the code compiles.
 }
 
