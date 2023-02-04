@@ -328,8 +328,11 @@ player_t* team_list_remove(team_t* t, int pos){
 // Queries the current size of a team
 int team_size(team_t* t){
 	// TODO: Implement me!!
-	
-	return 99999; // Note: This line is a 'filler' so the code compiles.
+	if (t == NULL) {
+        return -1;
+    }
+
+	return t->activePlayers; // Note: This line is a 'filler' so the code compiles.
 }
 
 // BONUS function - not required for HW
