@@ -64,7 +64,17 @@ team_t* create_team(){
 // Returns 0 if false (the team DLL has at least one player enqueued)
 int team_empty(team_t* t){
 
-    return 99999; // Note: This line is a 'filler' so the code compiles.
+    if (t == NULL) {
+        return -1;
+    }
+    else if(t->activePlayers == 0) {
+        return 1;
+    }
+    else if(t->activePlayers > 0){
+        return 0;
+    }
+
+    return -1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // push a new player to the front of the DLL ( before the first player in the list).
