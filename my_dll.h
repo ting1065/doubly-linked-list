@@ -151,8 +151,25 @@ int team_push_back(team_t* t, int roster, char* name){
 // Assume roster numbers are always greater than zero
 player_t* team_pop_front(team_t* t){
 	// TODO: Implement me!!
+	if (t == NULL) {
+        return NULL;
+    }
+
+    if (t->activePlayers == 0) {
+        return NULL;
+    }
+
+    player_t* temp;
+    temp = t->head;
+    t->head = t->head->next;
+
+    if (t->activePlayers == 1) {
+        t->tail = NULL;
+    }
 	
-	return NULL; // Note: This line is a 'filler' so the code compiles.
+    t->activePlayers--;
+
+	return temp; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the last player in the Team, and also removes it from the list.
