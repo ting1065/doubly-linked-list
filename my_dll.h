@@ -348,6 +348,21 @@ void team_sort(team_t* t){
 
 }
 
+//Helper function
+//free_player(player_t* p)
+//Removes a play and its name from memory.
+void free_player(player_t* t) {
+    if (t == NULL) {
+        return;
+    }
+
+    if (t->name != NULL) {
+        free(t->name);
+    }
+
+    free(t);
+}
+
 // Free Team DLL
 // Removes a Team and all of its players (...and their names!!...) from memory.
 // This should be called before the program terminates.
