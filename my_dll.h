@@ -213,7 +213,7 @@ int team_insert(team_t* t, int pos, int roster, char* name){
         return -1;
     }
 
-    if (pos < 0 || t->activePlayers < pos) {
+    if (pos < 0 || t->activePlayers - 1 < pos) {
         return 0;
     }
 
@@ -260,8 +260,21 @@ int team_insert(team_t* t, int pos, int roster, char* name){
 // Assume roster numbers are always greater than zero
 int team_list_get(team_t* t, int pos){
 	// TODO: Implement me!!
-	
-	return 99999; // Note: This line is a 'filler' so the code compiles.
+	if (t == NULL) {
+        return -1;
+    }
+
+    if (pos < 0 || t->activePlayers - 1 < pos) {
+        return 0;
+    }
+
+    player_t* iterator = t->head;
+    int i;
+    for (i=0; i<pos; i++) {
+        iterator = iterator->next;
+    }
+
+	return iterator->rosterNum; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Removes the player at position pos starting at 0 ( 0 being the first item )
