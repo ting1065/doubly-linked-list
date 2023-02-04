@@ -209,8 +209,45 @@ player_t* team_pop_back(team_t* t){
 //   (inserting at the size should be equivalent of calling push_back).
 int team_insert(team_t* t, int pos, int roster, char* name){
 	// TODO: Implement me!!
-	
-	return 99999; // Note: This line is a 'filler' so the code compiles.
+	if (t == NULL) {
+        return -1;
+    }
+
+    if (pos < 0 || t->activePlayers < pos) {
+        return 0;
+    }
+
+    player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
+    if (newPlayer == NULL) {
+        return 0;
+    }
+    newPlayer->rosterNum = roster;
+    newPlayer->name = name;
+    
+    player_t* iterator = t->head;
+    int i;
+    for (i=0; i<pos; i++) {
+        iterator = iterator->next;
+    }
+
+    newPlayer->next = iterator;
+    if (t->activePlayers == 0) {
+        newPlayer->previous = NULL;
+        t->tail = newPlayer;
+    }
+    else {
+        newPlayer->previous = iterator->previous;
+        iterator->previous = newPlayer;
+    }
+    
+
+    if (pos == 0) {
+        t->head = iterator;
+    }
+
+    t->activePlayers++;
+        
+	return 1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the roster number of the player at position pos starting at 0 
