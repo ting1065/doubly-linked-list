@@ -67,10 +67,10 @@ int team_empty(team_t* t){
     if (t == NULL) {
         return -1;
     }
-    else if(t->activePlayers == 0) {
+    else if (t->activePlayers == 0) {
         return 1;
     }
-    else if(t->activePlayers > 0){
+    else if (t->activePlayers > 0){
         return 0;
     }
 
@@ -83,8 +83,32 @@ int team_empty(team_t* t){
 // Returns 0 on failure ( i.e. we couldn't allocate memory for the new player)
 // (i.e. the memory allocation for a new player failed).
 int team_push_front(team_t* t, int roster, char* name){
+
+    if (t == NULL) {
+        return -1;
+    }
+
+    player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
+    if (newPlayer == NULL) {
+        return 0;
+    }
+    newPlayer->rosterNum = roster;
+    newPlayer->name = name;
+    newPlayer->next = t->head;
+    newPlayer->previous = NULL;
+
+    if (t->head != NULL) {
+        t->head->previous = newPlayer;
+    }
+    
+    t->head = newPlayer;
+    if (t->activePlayers == 0) {
+        t->tail = newPlayer;
+    }
+
+    t->activePlayers++;
    
-    return 99999; // Note: This line is a 'filler' so the code compiles.
+    return 1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // push a new player to the end of the team DLL (after the last player in the list).
