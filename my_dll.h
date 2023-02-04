@@ -286,8 +286,41 @@ int team_list_get(team_t* t, int pos){
 // Otherwise returns the roster number of the player removed.
 player_t* team_list_remove(team_t* t, int pos){
 	// TODO: Implement me!!
-	
-	return NULL; // Note: This line is a 'filler' so the code compiles.
+	if (t == NULL) {
+        return NULL;
+    }
+
+    if (pos < 0 || t->activePlayers - 1 < pos) {
+        return NULL;
+    }
+
+    player_t* iterator = t->head;
+    int i;
+    for (i=0; i<pos; i++) {
+        iterator = iterator->next;
+    }
+
+    if (iterator == NULL) {
+        return NULL;
+    }
+
+    if (iterator->previous != NULL) {
+        iterator->previous->next = iterator->next;
+    }
+    else {
+        t->head = iterator->next;
+    }
+
+    if (iterator->next != NULL) {
+        iterator->next->previous = iterator->previous;
+    }
+    else {
+        t->tail = iterator->previous;
+    }
+
+    t->activePlayers--;
+
+	return iterator; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Team Size
