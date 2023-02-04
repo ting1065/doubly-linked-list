@@ -118,8 +118,31 @@ int team_push_front(team_t* t, int roster, char* name){
 // (i.e. the memory allocation for a new player failed).
 int team_push_back(team_t* t, int roster, char* name){
 	// TODO: Implement me!!
-	
-	return 99999; // Note: This line is a 'filler' so the code compiles.
+    if (t == NULL) {
+        return -1;
+    }
+
+    player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
+    if (newPlayer == NULL) {
+        return 0;
+    }
+    newPlayer->rosterNum = roster;
+    newPlayer->name = name;
+    newPlayer->next = NULL;
+    newPlayer->previous = t->tail;
+
+    if (t->tail != NULL) {
+        t->tail->next = newPlayer;
+    }
+
+    t->tail = newPlayer;
+    if (t->activePlayers == 0) {
+        t->head = newPlayer;
+    }
+
+    t->activePlayers++;
+
+	return 1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the first player in the DLL and also removes it from the team.
