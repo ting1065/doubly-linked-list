@@ -19,10 +19,10 @@
 // assume the longest name you'll have to deal with is at most 20 character long
 // we are only using family names.
 typedef struct player {
-	int rosterNum;
-	char* name;
-	struct player* next;
-  	struct player* previous;
+    int rosterNum;
+    char* name;
+    struct player* next;
+    struct player* previous;
 } player_t;
 
 // Create a Team data structure that is a doubly linked list
@@ -30,8 +30,8 @@ typedef struct player {
 // and a pointer to the last player node in our Team called tail.
 // It also keeps count of how many active players we have on our Team
 typedef struct Team {
-	int activePlayers;		// count keeps track of how many active players are on the Team.
-	player_t* head;		// head points to the first player node in our DLL.
+    int activePlayers;		// count keeps track of how many active players are on the Team.
+    player_t* head;		// head points to the first player node in our DLL.
     player_t* tail;          //tail points to the last player node in our DLL.
 } team_t;
 
@@ -42,8 +42,8 @@ typedef struct Team {
 // The Team fields should also be initialized to default values.
 // Returns NULL if we could not allocate memory.
 team_t* create_team(){
-	// Modify the body of this function as needed.
-	team_t* myTeam= (team_t*)malloc(sizeof(team_t));
+    // Modify the body of this function as needed.
+    team_t* myTeam= (team_t*)malloc(sizeof(team_t));
     if (myTeam == NULL) {
         return NULL;
     }
@@ -52,7 +52,7 @@ team_t* create_team(){
     myTeam->head = NULL;
     myTeam->tail = NULL;
 
-	return myTeam; // Note: This line is a 'filler' so the code compiles.
+    return myTeam; // Note: This line is a 'filler' so the code compiles.
 }
 
 
@@ -146,7 +146,7 @@ int team_push_back(team_t* t, int roster, char* name){
 
     t->activePlayers++;
 
-	return 1; // Note: This line is a 'filler' so the code compiles.
+    return 1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the first player in the DLL and also removes it from the team.
@@ -154,8 +154,8 @@ int team_push_back(team_t* t, int roster, char* name){
 // Returns NULL on failure, i.e. there is no one to pop from the team.
 // Assume roster numbers are always greater than zero
 player_t* team_pop_front(team_t* t){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return NULL;
     }
 
@@ -176,7 +176,7 @@ player_t* team_pop_front(team_t* t){
 	
     t->activePlayers--;
 
-	return temp; // Note: This line is a 'filler' so the code compiles.
+    return temp; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the last player in the Team, and also removes it from the list.
@@ -184,8 +184,8 @@ player_t* team_pop_front(team_t* t){
 // Returns NULL on failure, i.e. there is no one to pop from the Team.
 // Assume roster numbers are always greater than zero
 player_t* team_pop_back(team_t* t){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return NULL;
     }
 	
@@ -218,8 +218,8 @@ player_t* team_pop_back(team_t* t){
 //  * we tried to insert past the size of the list
 //   (inserting at the size should be equivalent of calling push_back).
 int team_insert(team_t* t, int pos, int roster, char* name){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return -1;
     }
 
@@ -261,7 +261,7 @@ int team_insert(team_t* t, int pos, int roster, char* name){
 
     t->activePlayers++;
         
-	return 1; // Note: This line is a 'filler' so the code compiles.
+    return 1; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Returns the roster number of the player at position pos starting at 0 
@@ -273,8 +273,8 @@ int team_insert(team_t* t, int pos, int roster, char* name){
 //  * we tried to get past the size of the list
 // Assume roster numbers are always greater than zero
 int team_list_get(team_t* t, int pos){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return -1;
     }
 
@@ -288,7 +288,7 @@ int team_list_get(team_t* t, int pos){
         iterator = iterator->next;
     }
 
-	return iterator->rosterNum; // Note: This line is a 'filler' so the code compiles.
+    return iterator->rosterNum; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Removes the player at position pos starting at 0 ( 0 being the first item )
@@ -299,8 +299,8 @@ int team_list_get(team_t* t, int pos){
 // Assume no negative numbers in the list or the number zero.
 // Otherwise returns the roster number of the player removed.
 player_t* team_list_remove(team_t* t, int pos){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return NULL;
     }
 
@@ -334,19 +334,19 @@ player_t* team_list_remove(team_t* t, int pos){
 
     t->activePlayers--;
 
-	return iterator; // Note: This line is a 'filler' so the code compiles.
+    return iterator; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Team Size
 // Returns -1 if the Team is NULL.
 // Queries the current size of a team
 int team_size(team_t* t){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return -1;
     }
 
-	return t->activePlayers; // Note: This line is a 'filler' so the code compiles.
+    return t->activePlayers; // Note: This line is a 'filler' so the code compiles.
 }
 
 // BONUS function - not required for HW
@@ -357,9 +357,7 @@ int team_size(team_t* t){
 // in ascending order
 // only work on this if you're all done with everything else tested!!
 void team_sort(team_t* t){
-
     // OPTIONAL
-
 }
 
 //Helper function
@@ -382,8 +380,8 @@ void free_player(player_t* p) {
 // Removes a Team and all of its players (...and their names!!...) from memory.
 // This should be called before the program terminates.
 void free_team(team_t* t){
-	// TODO: Implement me!!
-	if (t == NULL) {
+    // TODO: Implement me!!
+    if (t == NULL) {
         return;
     }
 
