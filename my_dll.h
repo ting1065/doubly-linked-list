@@ -170,6 +170,9 @@ player_t* team_pop_front(team_t* t){
     if (t->activePlayers == 1) {
         t->tail = NULL;
     }
+    else {
+        t->head->previous = NULL;
+    }
 	
     t->activePlayers--;
 
@@ -193,9 +196,12 @@ player_t* team_pop_back(team_t* t){
     player_t* temp;
     temp = t->tail;
     t->tail = t->tail->previous;
-    
+      
     if (t->activePlayers == 1) {
         t->head = NULL;
+    }
+    else {
+        t->tail->next = NULL;
     }
 
     t->activePlayers--;
