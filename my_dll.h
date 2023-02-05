@@ -93,7 +93,8 @@ int team_push_front(team_t* t, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
-    newPlayer->name = name;
+    newPlayer->name = (char*)malloc(sizeof(*name));
+    *(newPlayer->name) = *name;
     newPlayer->next = t->head;
     newPlayer->previous = NULL;
 
@@ -127,7 +128,8 @@ int team_push_back(team_t* t, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
-    newPlayer->name = name;
+    newPlayer->name = (char*)malloc(sizeof(*name));
+    *(newPlayer->name) = *name;
     newPlayer->next = NULL;
     newPlayer->previous = t->tail;
 
@@ -222,7 +224,8 @@ int team_insert(team_t* t, int pos, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
-    newPlayer->name = name;
+    newPlayer->name = (char*)malloc(sizeof(*name));
+    *(newPlayer->name) = *name;
     
     player_t* iterator = t->head;
     int i;
@@ -355,8 +358,9 @@ void free_player(player_t* p) {
     if (p == NULL) {
         return;
     }
-
+    
     if (p->name != NULL) {
+        
         free(p->name);
     }
 
@@ -372,7 +376,7 @@ void free_team(team_t* t){
         return;
     }
 
-	player_t* iterator = t->head;
+    player_t* iterator = t->head;
     while (t->head != NULL) {
         iterator = iterator->next;
         free_player(t->head);
