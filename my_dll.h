@@ -200,7 +200,7 @@ player_t* team_pop_back(team_t* t){
 
     t->activePlayers--;
     
-	return temp; // Note: This line is a 'filler' so the code compiles.
+    return temp; // Note: This line is a 'filler' so the code compiles.
 }
 
 // Inserts a new player before the player at the specified position.
@@ -243,12 +243,14 @@ int team_insert(team_t* t, int pos, int roster, char* name){
     }
     else {
         newPlayer->previous = iterator->previous;
+        if (iterator->previous != NULL) {
+            iterator->previous->next = newPlayer;
+        }
         iterator->previous = newPlayer;
     }
-    
 
     if (pos == 0) {
-        t->head = iterator;
+        t->head = newPlayer;
     }
 
     t->activePlayers++;
