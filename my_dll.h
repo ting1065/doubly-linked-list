@@ -134,6 +134,9 @@ int team_push_back(team_t* t, int roster, char* name){
     newPlayer->rosterNum = roster;
     int nameSize = strlen(name);
     newPlayer->name = (char*)malloc(sizeof(char) * (nameSize+1));
+    if (newPlayer->name == NULL) {
+        return 0;
+    }
     strcpy(newPlayer->name, name);
     newPlayer->next = NULL;
     newPlayer->previous = t->tail;
