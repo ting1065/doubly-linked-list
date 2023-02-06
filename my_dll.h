@@ -93,12 +93,14 @@ int team_push_front(team_t* t, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
+
     int nameSize = strlen(name);
     newPlayer->name = (char*)malloc(sizeof(char) * (nameSize+1));
     if (newPlayer->name == NULL) {
         return 0;
     }
     strcpy(newPlayer->name, name);
+
     newPlayer->next = t->head;
     newPlayer->previous = NULL;
 
@@ -132,12 +134,14 @@ int team_push_back(team_t* t, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
+
     int nameSize = strlen(name);
     newPlayer->name = (char*)malloc(sizeof(char) * (nameSize+1));
     if (newPlayer->name == NULL) {
         return 0;
     }
     strcpy(newPlayer->name, name);
+
     newPlayer->next = NULL;
     newPlayer->previous = t->tail;
 
@@ -238,8 +242,12 @@ int team_insert(team_t* t, int pos, int roster, char* name){
         return 0;
     }
     newPlayer->rosterNum = roster;
+
     int nameSize = strlen(name);
     newPlayer->name = (char*)malloc(sizeof(char) * (nameSize + 1));
+    if (newPlayer->name == NULL) {
+        return 0;
+    }
     strcpy(newPlayer->name, name);
     
     player_t* iterator = t->head;
