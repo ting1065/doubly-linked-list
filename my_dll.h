@@ -95,6 +95,9 @@ int team_push_front(team_t* t, int roster, char* name){
     newPlayer->rosterNum = roster;
     int nameSize = strlen(name);
     newPlayer->name = (char*)malloc(sizeof(char) * (nameSize+1));
+    if (newPlayer->name == NULL) {
+        return 0;
+    }
     strcpy(newPlayer->name, name);
     newPlayer->next = t->head;
     newPlayer->previous = NULL;
