@@ -4,7 +4,7 @@ This is the starting readme for this assignment.  Please edit the following info
 
 - Name: Fengting Tang
 - Github Account name: ting1065 
-- Description: *edit me*
+- Description: built a doubly linked list, wrote extra 12 tests
 - How many hours did it take you to complete this assignment? 10
 - Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what capacity.
   - N/A
