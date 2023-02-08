@@ -331,7 +331,31 @@ int unitTest12(int status) {
     else {
         passed = 0;
     }
-    free(test);
+    free_team(test);
+
+    return passed;
+}
+
+//Tests push back and pop_back function with 2 players
+int unitTest13(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+    char player1[20] = "Rick";
+    char player2[20] = "Morty";
+
+    team_push_back(test, 6, player1);
+    team_push_back(test, 20, player2);
+    player_t* popPlayer1 = team_pop_back(test);
+    player_t* popPlayer2 = team_pop_back(test);
+    free_player(popPlayer1);
+    free_player(popPlayer2);
+    if (team_size(test) == 0) {
+        passed = 1;
+    } 
+    else {
+        passed = 0;
+    }
+    free_team(test);
 
     return passed;
 }
@@ -351,6 +375,8 @@ int (*unitTests[])(int)={
     unitTest9,
     unitTest10,
     unitTest11,
+    unitTest12,
+    unitTest13,
     NULL
 };
 
