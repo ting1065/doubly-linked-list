@@ -389,6 +389,36 @@ int unitTest14(int status) {
     return passed;
 }
 
+//Test push_back four times, then pops twice from the front
+//then should compute the correct size
+int unitTest15(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+    char player1[20] = "Rick";
+    char player2[20] = "Morty";
+    char player3[20] = "Justin";
+    char player4[20] = "Roiland";
+    
+    team_push_back(test, 11, player1);
+    team_push_back(test, 22, player2);
+    team_push_back(test, 23, player3);
+    team_push_back(test, 44, player4);
+
+    player_t* popPlayer1 = team_pop_back(test);
+    player_t* popPlayer2 = team_pop_back(test);
+    free_player(popPlayer1);
+    free_player(popPlayer2);
+
+    if (team_size(test) == 2) {
+        passed = 1;
+    }
+    else {
+        passed = 0;
+    }
+    free_team(test);
+
+    return passed;
+}
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 int (*unitTests[])(int)={
@@ -407,6 +437,7 @@ int (*unitTests[])(int)={
     unitTest12,
     unitTest13,
     unitTest14,
+    unitTest15,
     NULL
 };
 
