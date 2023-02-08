@@ -597,6 +597,38 @@ int unitTest21(int status) {
 
     return passed;
 }
+
+//Test inserting to an empty team at position 0, 0 and 2
+//test the return value, team size, head and tail
+int unitTest22(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+
+    char player1[20] = "Rick";
+    char player2[20] = "Morty";
+    char player3[20] = "Justin";
+
+    team_insert(test, 0, 11, player1);
+    team_insert(test, 0, 22, player2);
+    team_insert(test, 2, 33, player3);
+
+    if (team_size(test) == 3 &&
+        test->head->rosterNum == 22 &&
+        team_list_get(test, 1) == 11 &&
+        test->tail->rosterNum == 33 &&
+        test->head->previous == NULL &&
+        test->tail->next == NULL &&
+        test->head->next == test->tail->previous) {
+        passed = 1;
+    }
+    else {
+        passed = 0;
+    }
+    free_team(test);
+
+    return passed;    
+}
+
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 int (*unitTests[])(int)={
@@ -622,6 +654,7 @@ int (*unitTests[])(int)={
     unitTest19,
     unitTest20,
     unitTest21,
+    unitTest22,
     NULL
 };
 
