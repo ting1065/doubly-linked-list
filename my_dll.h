@@ -233,8 +233,13 @@ int team_insert(team_t* t, int pos, int roster, char* name){
         return -1;
     }
 
-    if (pos < 0 || t->activePlayers - 1 < pos) {
+    if (pos < 0 || t->activePlayers < pos) {
         return 0;
+    }
+
+    if (pos == t->activePlayers) {
+        team_push_back(t, roster, name);
+        return 1;
     }
 
     player_t* newPlayer = (player_t*)malloc(sizeof(player_t));
