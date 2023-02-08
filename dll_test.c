@@ -480,7 +480,35 @@ int unitTest17(int status) {
     free_team(test);
 
     return passed;
-} 
+}
+
+//Tests push_front 4 times, checks roster number of 3nd position
+//player(who is forth, since pos starts at 0)
+//tests the return value
+int unitTest18(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+    
+    char player1[20] = "Rick";
+    char player2[20] = "Morty";
+    char player3[20] = "Justin";
+    char player4[20] = "Roiland";
+
+    team_push_front(test, 86, player1);
+    team_push_front(test, 76, player2);
+    team_push_front(test, 33, player3);
+    team_push_front(test, 22, player4);
+
+    if (team_list_get(test, 3) == 86) {
+        passed = 1;
+    }
+    else {
+        passed = 0;
+    }
+    free_team(test);
+
+    return passed;
+}
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 int (*unitTests[])(int)={
@@ -502,6 +530,7 @@ int (*unitTests[])(int)={
     unitTest15,
     unitTest16,
     unitTest17,
+    unitTest18,
     NULL
 };
 
