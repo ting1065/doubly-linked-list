@@ -509,6 +509,41 @@ int unitTest18(int status) {
 
     return passed;
 }
+
+//Tests pushing front and back and then removing the player
+//at position 1 twice
+//tests the return value and the size of remaining team
+int unitTest19(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+
+    char player1[20] = "Rick";
+    char player2[20] = "Morty";
+    char player3[20] = "Justin";
+    char player4[20] = "Roiland";
+
+    team_push_back(test, 47, player1);
+    team_push_back(test, 35, player2);
+    team_push_back(test, 96, player3);
+    team_push_back(test, 40, player4);
+
+    player_t* forward1 = team_list_remove(test, 1);
+    player_t* forward2 = team_list_remove(test, 1);
+
+    char nameComp[15] = "Justin";
+    if (strcmp(forward2->name, nameComp) == 0 &&
+        team_size(test) == 2) {
+        passed = 1;
+    }
+    else {
+        passed = 0;
+    }
+    free_player(forward1);
+    free_player(forward2);
+    free_team(test);
+
+    return passed;
+}
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 int (*unitTests[])(int)={
@@ -531,6 +566,7 @@ int (*unitTests[])(int)={
     unitTest16,
     unitTest17,
     unitTest18,
+    unitTest19,
     NULL
 };
 
