@@ -316,6 +316,26 @@ int unitTest11(int status) {
     return passed;
 }
 
+//Tests push_back and size functions with 2 players
+int unitTest12(int status) {
+    int passed = 0;
+    team_t* test = create_team();
+    char player1[20] = "Justin";
+    char player2[20] = "Roiland";
+    
+    team_push_back(test, 3, player1);
+    team_push_back(test, 4, player2);
+    if (team_size(test) == 2) {
+        passed = 1;
+    }
+    else {
+        passed = 0;
+    }
+    free(test);
+
+    return passed;
+}
+
 // An array of function pointers to all of the tests
 // that main() can use iterate over them.
 int (*unitTests[])(int)={
